@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flavorly | Recipe Journal</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+  <a class="brand" href="#home">
+    <strong>Flavorly</strong>
+    <span>recipes worth making</span>
+  </a>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#recipes">Recipes</a>
+    <a href="#categories">Categories</a>
+    <a href="#about">About</a>
+    <a href="#community">Community</a>
+  </nav>
+  <div class="account-actions">
+    <button id="savedButton" class="saved-button">♡ Saved</button>
+    <button id="collectionsButton" class="account-button">Collections</button>
+    <button id="authButton" class="account-button">Login / Register</button>
+    <button id="profileButton" class="account-button profile-hidden">Profile</button>
+    <button id="adminButton" class="account-button">Admin</button>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-copy">
+    <p class="eyebrow">YOUR RECIPE JOURNAL</p>
+    <h1>Good food starts<br><em>with a good recipe.</em></h1>
+    <p class="hero-description">Discover Indian favourites, refreshing drinks, comforting desserts and dishes from around the world.</p>
+    <div class="search">
+      <span>⌕</span>
+      <input id="searchInput" type="search" placeholder="Search recipes, ingredients or cuisine...">
+    </div>
+  </div>
+  <div class="hero-photo">
+    <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=85" alt="Food">
+  </div>
+</section>
+
+<section class="categories" id="categories">
+  <div class="section-title">
+    <div>
+      <p class="eyebrow">EXPLORE</p>
+      <h2>What are you craving?</h2>
+    </div>
+  </div>
+  <div class="category-buttons">
+    <button class="category-btn active" data-category="All">All Recipes</button>
+    <button class="category-btn" data-category="South Indian">South Indian</button>
+    <button class="category-btn" data-category="North Indian">North Indian</button>
+    <button class="category-btn" data-category="Specials">Specials</button>
+    <button class="category-btn" data-category="Shakes & Mocktails">Drinks</button>
+    <button class="category-btn" data-category="Desserts">Desserts</button>
+    <button class="category-btn" data-category="International">International</button>
+  </div>
+</section>
+
+<section class="smart-filters" id="filters">
+  <div class="section-title">
+    <div><p class="eyebrow">FILTER & DISCOVER</p><h2>Find your kind of food</h2></div>
+  </div>
+  <div class="filter-row">
+    <div>
+      <label>Dietary preference</label>
+      <div class="filter-buttons" id="dietFilters">
+        <button class="filter-btn active" data-diet="All">All</button>
+        <button class="filter-btn" data-diet="Vegetarian">Vegetarian</button>
+        <button class="filter-btn" data-diet="Vegan">Vegan</button>
+        <button class="filter-btn" data-diet="Non-Vegetarian">Non-Vegetarian</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="feature-wrap">
+  <div class="feature">
+    <div class="feature-photo">
+      <img src="https://images.pexels.com/photos/2338407/pexels-photo-2338407.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Featured food">
+    </div>
+    <div class="feature-copy">
+      <p class="eyebrow">EDITOR'S PICK</p>
+      <h2>Comfort food,<br>made beautifully.</h2>
+      <p>Find recipes that are simple enough for everyday cooking and special enough to share.</p>
+      <button id="exploreButton" class="primary">Explore recipes →</button>
+    </div>
+  </div>
+</section>
+
+<main id="recipes">
+  <div id="recipeSections"></div>
+</main>
+
+
+<section class="module-section" id="recipeStudio">
+  <div class="module-header">
+    <div><p class="eyebrow">RECIPE MANAGEMENT</p><h2>Recipe Studio</h2><p>Create, edit, organize and publish recipes.</p></div>
+    <button class="primary" onclick="openFeatureModal('recipeEditorModal')">＋ Add New Recipe</button>
+  </div>
+  <div class="module-grid">
+    <div class="module-card"><span class="module-icon">＋</span><h3>Add & Edit Recipes</h3><p>Manage recipe title, ingredients, instructions, time, difficulty and category.</p></div>
+    <div class="module-card"><span class="module-icon">▣</span><h3>Image Upload</h3><p>Upload a recipe image directly from your device.</p></div>
+    <div class="module-card"><span class="module-icon">✓</span><h3>Publishing</h3><p>Save recipes as drafts and publish approved recipes to the catalog.</p></div>
+    <div class="module-card"><span class="module-icon">☷</span><h3>Ingredient & Steps</h3><p>Keep ingredient lists and step-by-step cooking instructions organized.</p></div>
+  </div>
+  <div id="managedRecipes" class="managed-recipes"></div>
+</section>
+
+<section class="module-section community-section" id="community">
+  <div class="module-header"><div><p class="eyebrow">COMMUNITY</p><h2>Cook. Share. Discover.</h2><p>See what the Flavorly community is making.</p></div><button class="account-button" onclick="openFeatureModal('recipeEditorModal')">Share a Recipe</button></div>
+  <div class="community-grid">
+    <div class="community-panel"><p class="eyebrow">POPULAR RECIPES</p><h3>Most-loved dishes</h3><div id="popularRecipes"></div></div>
+    <div class="community-panel"><p class="eyebrow">TRENDING</p><h3>Trending Recipes Dashboard</h3><div id="trendingRecipes"></div></div>
+    <div class="community-panel"><p class="eyebrow">FEATURED CHEFS</p><h3>Community creators</h3><div class="chef-list"><div><strong>Chef Ananya</strong><span>Indian Cuisine</span></div><div><strong>Chef Marco</strong><span>Italian Cuisine</span></div><div><strong>Chef Maya</strong><span>Healthy Recipes</span></div></div></div>
+  </div>
+</section>
+
+<section class="module-section admin-section" id="adminDashboard">
+  <div class="module-header"><div><p class="eyebrow">ADMIN MODULE</p><h2>Admin Dashboard</h2><p>Manage users, recipes, categories, community activity and reports.</p></div><button class="primary" onclick="generateAdminReport()">Generate Report</button></div>
+  <div class="admin-stats" id="adminStats"></div>
+  <div class="admin-grid">
+    <div class="admin-panel"><h3>User Management</h3><div id="adminUsers"></div></div>
+    <div class="admin-panel"><h3>Recipe Approval & Moderation</h3><div id="adminPending"></div></div>
+    <div class="admin-panel"><h3>Category Management</h3><div class="category-manager"><input id="newCategory" placeholder="New category"><button class="account-button" onclick="addAdminCategory()">Add</button></div><div id="adminCategories"></div></div>
+    <div class="admin-panel"><h3>Community Monitoring</h3><div id="adminCommunity"></div></div>
+    <div class="admin-panel"><h3>Analytics Dashboard</h3><div id="adminAnalytics"></div></div>
+    <div class="admin-panel"><h3>Content Management</h3><p class="form-note">Featured recipes, chef profiles, community reviews and homepage content can be managed here.</p><button class="account-button" onclick="refreshAdminDashboard()">Refresh Content</button></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div>
+    <p class="eyebrow">ABOUT FLAVORLY</p>
+    <h2>Recipes for real kitchens, real cravings and real moments.</h2>
+  </div>
+  <p>Flavorly is a recipe discovery app where users can search recipes by dish, ingredient or cuisine, explore categories, save favourites and open detailed step-by-step recipes.</p>
+</section>
+
+<section class="feedback-section" id="feedback">
+  <div class="feedback-card">
+    <div>
+      <p class="eyebrow">YOUR FEEDBACK</p>
+      <h2>How was your experience?</h2>
+      <p class="feedback-subtitle">Rate Flavorly and tell us what you think.</p>
+    </div>
+
+    <form id="feedbackForm" class="feedback-form">
+      <div class="rating-wrap">
+        <label>Rating</label>
+        <div class="stars" role="radiogroup" aria-label="Rate Flavorly from 1 to 5 stars">
+          <button type="button" class="star" data-rating="1" aria-label="1 star">★</button>
+          <button type="button" class="star" data-rating="2" aria-label="2 stars">★</button>
+          <button type="button" class="star" data-rating="3" aria-label="3 stars">★</button>
+          <button type="button" class="star" data-rating="4" aria-label="4 stars">★</button>
+          <button type="button" class="star" data-rating="5" aria-label="5 stars">★</button>
+        </div>
+        <span id="ratingText" class="rating-text">Select a rating</span>
+      </div>
+
+      <label for="feedbackText">Feedback</label>
+      <textarea id="feedbackText" rows="4" maxlength="500" placeholder="Tell us what you liked or what we can improve..."></textarea>
+      <button type="submit" class="primary feedback-submit">Submit feedback</button>
+      <p id="feedbackMessage" class="feedback-message" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <strong>Flavorly</strong>
+  <span>Discover. Cook. Enjoy.</span>
+  <small>© 2026 Flavorly Recipe Project</small>
+</footer>
+
+
+<div class="modal feature-modal" id="recipeEditorModal">
+  <div class="feature-box wide">
+    <button class="close" onclick="closeFeatureModal('recipeEditorModal')">×</button>
+    <p class="eyebrow">RECIPE MANAGEMENT</p><h2 id="recipeEditorTitle">Add New Recipe</h2>
+    <form id="recipeEditorForm" class="recipe-editor-form">
+      <input type="hidden" id="editRecipeId">
+      <div class="form-grid two-col">
+        <label>Recipe name<input id="editorName" required placeholder="e.g. Paneer Tikka"></label>
+        <label>Cuisine<input id="editorCuisine" required placeholder="e.g. Indian"></label>
+        <label>Category<select id="editorCategory"><option>South Indian</option><option>North Indian</option><option>Specials</option><option>Shakes & Mocktails</option><option>Desserts</option><option>International</option></select></label>
+        <label>Dietary preference<select id="editorDiet"><option>Vegetarian</option><option>Vegan</option><option>Non-Vegetarian</option></select></label>
+        <label>Cooking time (minutes)<input id="editorTime" type="number" min="1" required value="30"></label>
+        <label>Difficulty<select id="editorDifficulty"><option>Easy</option><option>Medium</option><option>Hard</option></select></label>
+        <label class="full-field">Recipe image<input id="editorImage" type="file" accept="image/*"><span class="form-note">Choose an image from your device. It is stored in this browser for the demo.</span></label>
+        <label class="full-field">Ingredients<textarea id="editorIngredients" rows="5" required placeholder="One ingredient per line"></textarea></label>
+        <label class="full-field">Step-by-step instructions<textarea id="editorSteps" rows="6" required placeholder="One cooking step per line"></textarea></label>
+      </div>
+      <div class="editor-actions"><button type="button" class="account-button" onclick="saveRecipeAsDraft()">Save Draft</button><button type="submit" class="primary">Publish Recipe</button></div>
+      <p id="recipeEditorMessage" class="feedback-message"></p>
+    </form>
+  </div>
+</div>
+
+<div class="modal" id="recipeModal">
+  <div class="modal-box">
+    <button class="close" onclick="closeRecipe()">×</button>
+    <img id="modalImage" class="modal-photo" src="" alt="">
+    <div class="modal-body">
+      <p id="modalCategory" class="eyebrow"></p>
+      <h2 id="modalTitle"></h2>
+      <div class="modal-meta"><span id="modalTime"></span><span id="modalCuisine"></span></div>
+      <hr>
+      <h3>Ingredients</h3>
+      <ul id="modalIngredients"></ul>
+      <h3>How to make it</h3>
+      <ol id="modalSteps"></ol>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
